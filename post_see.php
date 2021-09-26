@@ -1,23 +1,32 @@
+
 <?php
 include "../actions/connection.php";
 
-if(isset($_SESSION['login']) && $_SESSION['login']){
+$id = $_GET['id'];
 
-}else{
-    header("location:../index.php");
-}
-
-$online = "online";
-$nnm = $_SESSION['name'];
-$sql = "UPDATE users SET status = '$online' WHERE name = '$nnm'";
-
+$myname4 = $_SESSION['username'];
+$sql = "DELETE FROM notifications WHERE primil = '$myname4' AND post_id = '$id'";
 if($mysqli->query($sql)){
-  echo "";
+    echo "";
 }else{
-  echo "";
+    echo "";
 }
+
+$sql = "SELECT * from posts WHERE id = '$id'";
+$result = $mysqli->query($sql);
+if($result->num_rows > 0){
+
+    $row = $result->fetch_assoc();
+
+}else{
+    header("location:index.php");
+}
+
+
+
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,9 +34,7 @@ if($mysqli->query($sql)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
-        <!-- Latest compiled and minified CSS -->
+            <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -39,69 +46,14 @@ if($mysqli->query($sql)){
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-
-    <style>
-        #like2,#unlike2{
-            display: none;
-        }
-    </style>
-
 </head>
 <body>
-<header>
- 
-    <nav>
-      <center>
-      <ul>
-        <?php
-        
-        $me = $_SESSION['name'];
-     
-$sql = "SELECT * FROM users WHERE name = '$me'";
-
-$result = $mysqli->query($sql);
-
-$row = $result->fetch_assoc();
-        
-        ?>
-            <li><a href="profil.php?name=<?php echo $row['name'] ?>&profil=<?php echo $row['profil_image'] ?>">My Profil</a></li>
-            <li><a href="messenger.php?username=0">Messenger</a></li>
-            <li><a href="myFriends.php">My Friends</a></li>
-            <li><a style="color: #fff;cursor: pointer;" data-toggle="modal" data-target="#myModal">Notification</a></li>
-            
-            <li><a class="btn btn-danger" href="logOut.php">LogOut</a></li>
-        </ul>
-      </center>
-    </nav>
-</header>
 <br>
-<br>
-<center>
-<form style="background-color: #fff;display: inline-block;padding: 30px;box-shadow: 0 0 20px #000;" action="posts.php" method="post" >
-    <textarea style="width: 300px;" name="content" placeholder="Post" required ></textarea>
+  <a style="position:fixed;margin-left: 10px;" class="btn btn-danger" href="index.php">Back</a>
     <br>
     <br>
-    <button class="btn btn-primary" type="submit" >Post</button>
-</form>
-</center>
-
-
-<!--POSTS START-->
-<br>
-<br>
-<br>
-<div class="post">
-<?php
-
-$err = '';
-
-$sql = "SELECT * FROM posts ORDER BY new";
-$result = $mysqli->query($sql);
-if($result->num_rows > 0){
-
-while($row = $result->fetch_assoc()){
-   ?>
-
+    <br>
+    <br>
 <div class="container">
   <p style="background-color: #000;color: #fff;display: inline-block;padding: 5px;" ><?php echo $row['time'] ?></p>
 <div class="card">
@@ -149,37 +101,22 @@ while($row = $result->fetch_assoc()){
 </div>
 <br>
 </div>
-
-   <?php
-}
-//
-
-}else{
-   echo"<h1 style='background-color:red;display:inline-block;' >There is not post!</h1>";
-}
-
-?>
-
-
-</div>
-
-<!--POSTS END-->
-
-
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="likes">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Notifications</h4>
+        <h4 class="modal-title">LIKES</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        <div id="notifications_div" ></div>
+
+        <dov id="who"></dov>
+    
       </div>
 
       
@@ -187,8 +124,6 @@ while($row = $result->fetch_assoc()){
     </div>
   </div>
 </div>
-
-
 
 <!-- The Modal -->
 <div class="modal fade" id="comments">
@@ -220,33 +155,8 @@ while($row = $result->fetch_assoc()){
   </div>
 </div>
 
-
-<!-- The Modal -->
-<div class="modal fade" id="likes">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">LIKES</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-
-        <dov id="who"></dov>
-    
-      </div>
-
-      
-
-    </div>
-  </div>
-</div>
-
-<script src="like.js" ></script>
 <script src="script.js" ></script>
-<script src="code.js"></script>
+<script src="like.js" ></script>
+
 </body>
 </html>
