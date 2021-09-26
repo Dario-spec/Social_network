@@ -1,0 +1,134 @@
+body{
+    background-image: url("../img/back.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.form{
+    margin-top: 100px;
+    background-color: rgba(255,255,255,0.7);
+    padding: 33px;
+    display: inline-block;
+}
+.form input{
+    display: block;
+    margin-bottom: 25px;
+    
+    
+}
+.form h4 {
+    background-color: red;
+    display: inline-block;
+    padding: 5px;
+}
+.error{
+    color: red;
+    font-weight: bold;
+}
+.form a{
+    font-size: 13px;
+    
+}
+header nav{
+    background-color: #000;
+    width: 100%;
+    height: 100px;
+}
+header nav ul li{
+    display: inline-block;
+    list-style: none;
+    line-height: 100px;
+}
+header nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: arial;
+    margin: 14px;
+
+}
+.profil_img{
+    border-radius: 50%;
+    border: solid 3px #222;
+    box-shadow: 0 0 20px #000;
+}
+.profil_username{
+    background-color: #000;
+    color: #fff;
+    padding: 7px;
+    display: inline-block;
+}
+.hello_profil{
+    background-color: #fff;
+    padding: 30px;
+    display: inline-block;
+    box-shadow: 0 0 20px #000;
+}
+.upload_image{
+    margin-top: 100px;
+    background-color: #000;
+    display: inline-block;
+    padding: 20px;
+    color: #fff;
+}
+.upload_image textarea{
+    width: 80%;
+}
+.fr_naslov{
+    background-color: #fff;
+    display: inline-block;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.side{
+    background-color: #000;
+    width: 20%;
+    position: fixed;
+    top: 0;
+    overflow: auto;
+    left: 0;
+    border-right: 10px solid #000;
+    height: 100vh;
+    box-shadow: 0 0 20px #000;
+}
+.side h1{
+    color: #fff;
+    text-shadow: 0 0 20px #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 10px;
+}
+.messenger{
+    background-color: #fff;
+    width: 80%;
+    height: 100vh;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    padding-bottom: 100px;
+}
+.inp{
+    position: fixed;
+    bottom: 1%;
+    outline: none;
+    padding: 10px;
+    right: 10%;
+    width: 60%;
+}
+.messenger button{
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    width: 7%;
+}
+.messenger .send{
+    background-color: rgb(72, 67, 67);
+    width: 80%;
+    height: 75px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
